@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:property-placeholder
+    location="classpath:database.properties"></context:property-placeholder>
+
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <property name="driverClass" value="${jdbc.driver}"></property>
+    <property name="jdbcUrl" value="${jdbc.url}"></property>
+    <property name="user" value="${jdbc.username}"></property>
+    <property name="password" value="${jdbc.password}"></property>
+
+    <!-- Propriétés privées du pool de connexion c3p0 -->
+    <property name="maxPoolSize" value="30"/>
+    <property name="minPoolSize" value="10"/>
+    <!-- Pas d'auto-commit après la fermeture de la connexion -->
+    <property name="autoCommitOnClose" value="false"/>
+    <!-- Obtenir le délai de connexion -->
+    <property name="checkoutTimeout" value="10000"/>
+    <!-- Lors de l'obtention du nombre de tentatives d'échec de connexion -->
+    <property name="acquireRetryAttempts" value="2"/>
+  </bean>
+
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+  </bean>
+
+  <!--  Au lieu d'écrire la classe d'implémentation du mapper-->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    <property name="basePackage" value="com.xuanzhe.dao"/>
+  </bean>
+</beans>
