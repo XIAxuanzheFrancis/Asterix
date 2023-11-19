@@ -13,7 +13,8 @@
   </typeAliases>
 
   <mappers>
-    <mapper class="com.xuanzhe.dao.UserMapper"></mapper>
+    <mapper class="com.xuanzhe.dao.UtilisateurMapper"></mapper>
   </mappers>
+
 
 </configuration>

@@ -1,6 +1,5 @@
 package com.xuanzhe.pojo;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Boutique {
-  private List<Produit> produitList;
-  private int quantiteProduit;
-  private Auteur auteur;
-  private String description;
+    private int id;
+    private String nom_boutique;
+    private String description;
+    private int nombre_livre;
+    private int createur_id;
 }

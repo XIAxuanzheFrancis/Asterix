@@ -6,8 +6,8 @@
 		https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
   <context:component-scan base-package="com.xuanzhe.service"></context:component-scan>
-  <bean id="UserServiceImpl" class="com.xuanzhe.service.UserServiceImpl">
-    <property name="userMapper" ref="userMapper"></property>
+  <bean id="UtilisateurServiceImpl" class="com.xuanzhe.service.UtilisateurServiceImpl">
+    <property name="utilisateurMapper" ref="utilisateurMapper"></property>
   </bean>
 
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

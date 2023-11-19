@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuanzhe.dao.UtilisateurMapper">
+  <!-- Ajout d'un utilisateur -->
+  <insert id="addUser" parameterType="com.xuanzhe.pojo.Utilisateur" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO Utilisateur (nom, email, motDePasse, niveau, description, abonnement_id_list, abonne_id_list)
+    VALUES (#{nom}, #{email}, #{motDePasse}, #{niveau}, #{description}, #{abonnementIdList}, #{abonneIdList})
+  </insert>
+
+  <!-- Suppression d'un utilisateur par e-mail -->
+  <delete id="deleteUser">
+    DELETE FROM Utilisateur WHERE email = #{email}
+  </delete>
+
+  <!-- Mise à jour du niveau d'un utilisateur -->
+  <update id="updateNiveauUser">
+    UPDATE Utilisateur SET niveau = #{niveau} WHERE email = #{email}
+  </update>
+
+  <!-- Récupération de tous les utilisateurs -->
+  <select id="queryAllUser" resultType="com.xuanzhe.pojo.Utilisateur">
+    SELECT * FROM Utilisateur
+  </select>
+
+  <!-- Récupération d'utilisateurs par nom -->
+  <select id="queryUserByName" resultType="com.xuanzhe.pojo.Utilisateur" parameterType="java.lang.String">
+    SELECT * FROM Utilisateur WHERE nom = #{nom}
+  </select>
+
+  <!-- Récupération d'un utilisateur par ID -->
+  <select id="queryUserById" resultType="com.xuanzhe.pojo.Utilisateur" parameterType="int">
+    SELECT * FROM Utilisateur WHERE id = #{id}
+  </select>
+
+  <select id="loginUser" resultType="com.xuanzhe.pojo.Utilisateur" parameterType="map">
+    SELECT * FROM Utilisateur WHERE email = #{email} AND motDePasse = #{motDePasse}
+  </select>
+
+  <select id="getNiveauByEmail" resultType="int" parameterType="java.lang.String">
+    SELECT niveau FROM Utilisateur WHERE email = #{email}
+  </select>
+</mapper>
+
+
+
+
+

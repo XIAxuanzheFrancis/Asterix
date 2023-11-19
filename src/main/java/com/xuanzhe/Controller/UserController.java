@@ -1,7 +1,8 @@
 package com.xuanzhe.Controller;
 
-import com.xuanzhe.pojo.User;
-import com.xuanzhe.service.UserService;
+import com.xuanzhe.pojo.Utilisateur;
+import com.xuanzhe.service.UtilisateurService;
+import com.xuanzhe.service.UtilisateurServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
   @Autowired
-  @Qualifier("UserServiceImpl")
-  private UserService userService;
+  @Qualifier("UtilisateurServiceImpl")
+  private UtilisateurService utilisateurService;
 
   @RequestMapping("/allusers")
   public String getAllUsers(Model model){
-    List<User> list = userService.queryAllUser();
+    List<Utilisateur> list = utilisateurService.queryAllUser();
     model.addAttribute("AllUsers",list);
     return "allusers";
   }
@@ -28,31 +29,31 @@ public class UserController {
   }
 
   @RequestMapping("/adduser")
-  public String addUser(User user){
-    userService.addUser(user);
+  public String addUser(Utilisateur utilisateur){
+    utilisateurService.addUser(utilisateur);
     return "redirect:/allusers";
   }
-  @RequestMapping("/tomodify/{login}")
-  public String toModifyPage(@PathVariable String login, Model model){
-    User user = userService.queryUserById(login);
-    model.addAttribute("niveau",user.getNiveau());
+  @RequestMapping("/tomodify/{id}")
+  public String toModifyPage(@PathVariable int id, Model model){
+    Utilisateur utilisateur = utilisateurService.queryUserById(id);
+    model.addAttribute("niveau",utilisateur.getNiveau());
     return "toModifyPage";
   }
   @RequestMapping("/update")
-  public String updateNiveauUser(User user){
-    userService.updateNiveauUser(user);
+  public String updateNiveauUser(Utilisateur utilisateur){
+    utilisateurService.updateNiveauUser(utilisateur);
     return "redirect:/allusers";
   }
 
   @RequestMapping("/deleteUsers/{id}")
-  public String deleteUser(@PathVariable String login){
-    userService.deleteUser(login);
+  public String deleteUser(@PathVariable String email){
+    utilisateurService.deleteUser(email);
     return "redirect:/allusers";
   }
 
   @RequestMapping("/queryUsersByName")
   public String queryUsersByName(String queryUserName, Model model){
-    List<User> list = userService.queryUserByName(queryUserName);
+    List<Utilisateur> list = utilisateurService.queryUserByName(queryUserName);
     model.addAttribute("Allusers",list);
     return "allusers";
   }
