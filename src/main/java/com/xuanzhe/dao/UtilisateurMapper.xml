@@ -5,8 +5,8 @@
 <mapper namespace="com.xuanzhe.dao.UtilisateurMapper">
   <!-- Ajout d'un utilisateur -->
   <insert id="addUser" parameterType="com.xuanzhe.pojo.Utilisateur" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO Utilisateur (nom, email, motDePasse, niveau, description, abonnement_id_list, abonne_id_list)
-    VALUES (#{nom}, #{email}, #{motDePasse}, #{niveau}, #{description}, #{abonnementIdList}, #{abonneIdList})
+    INSERT INTO Utilisateur (nom, email, motDePasse, niveau, description)
+    VALUES (#{nom}, #{email}, #{motDePasse}, #{niveau}, #{description})
   </insert>
 
   <!-- Suppression d'un utilisateur par e-mail -->

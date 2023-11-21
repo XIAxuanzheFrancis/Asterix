@@ -28,7 +28,7 @@ public class UserController {
     return "addusers";
   }
 
-  @RequestMapping("/adduser")
+  @RequestMapping("/addusers")
   public String addUser(Utilisateur utilisateur){
     utilisateurService.addUser(utilisateur);
     return "redirect:/allusers";
