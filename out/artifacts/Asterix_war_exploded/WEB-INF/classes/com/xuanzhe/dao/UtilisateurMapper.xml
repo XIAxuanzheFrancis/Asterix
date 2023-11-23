@@ -11,12 +11,12 @@
 
   <!-- Suppression d'un utilisateur par e-mail -->
   <delete id="deleteUser">
-    DELETE FROM Utilisateur WHERE email = #{email}
+    DELETE FROM Utilisateur WHERE id = #{id}
   </delete>
 
   <!-- Mise à jour du niveau d'un utilisateur -->
-  <update id="updateNiveauUser">
-    UPDATE Utilisateur SET niveau = #{niveau} WHERE email = #{email}
+  <update id="updateUser">
+    UPDATE Utilisateur SET niveau = #{niveau}, motDePasse = #{motDePasse} WHERE id = #{id}
   </update>
 
   <!-- Récupération de tous les utilisateurs -->
@@ -26,7 +26,7 @@
 
   <!-- Récupération d'utilisateurs par nom -->
   <select id="queryUserByName" resultType="com.xuanzhe.pojo.Utilisateur" parameterType="java.lang.String">
-    SELECT * FROM Utilisateur WHERE nom = #{nom}
+    SELECT * FROM Utilisateur WHERE nom LIKE CONCAT('%', #{nom}, '%')
   </select>
 
   <!-- Récupération d'un utilisateur par ID -->
@@ -41,6 +41,10 @@
   <select id="getNiveauByEmail" resultType="int" parameterType="java.lang.String">
     SELECT niveau FROM Utilisateur WHERE email = #{email}
   </select>
+  <select id="queryUserByEmail" resultType="com.xuanzhe.pojo.Utilisateur" parameterType="java.lang.String">
+    SELECT * FROM Utilisateur WHERE email = #{email}
+  </select>
+
 </mapper>
 
 

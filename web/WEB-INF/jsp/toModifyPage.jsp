@@ -24,7 +24,26 @@
         </div>
     </div>
 
+    <form action="${pageContext.request.contextPath}/updateuser" method="past">
+        <%--        N'oubliez pas!!!!!!!!!!!!!!!!!!--%>
+        <input type="hidden" name="id" value="${utilisateur.id}">
+            <div class="form-group">
+                <label>Mot de Passe:</label>
+                <input type="password" name="motDePasse" class="form-control" value="${utilisateur.motDePasse}" required>
+            </div>
+        <div class="form-group">
+            <label for="niveau">niveau:</label>
+            <select name="niveau" id="niveau" class="form-control" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" value="Modify">
+        </div>
 
+    </form>
 </div>
 </body>
 </html>

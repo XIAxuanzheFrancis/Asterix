@@ -19,13 +19,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   }
 
   @Override
-  public int deleteUser(String email) {
-    return utilisateurMapper.deleteUser(email);
+  public int deleteUser(int id) {
+    return utilisateurMapper.deleteUser(id);
   }
 
   @Override
-  public int updateNiveauUser(Utilisateur utilisateur) {
-    return utilisateurMapper.updateNiveauUser(utilisateur);
+  public int updateUser(Utilisateur utilisateur) {
+    return utilisateurMapper.updateUser(utilisateur);
   }
 
   @Override
@@ -48,9 +48,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     return utilisateurMapper.loginUser(paramMap);
   }
 
-  @Override
-  public int getNiveauByEmail(String email) {
+  public int getNiveauByEmail(String email){
     return utilisateurMapper.getNiveauByEmail(email);
+  }
+  @Override
+  public Utilisateur queryUserByEmail(String email) {
+    return utilisateurMapper.queryUserByEmail(email);
   }
 }
 

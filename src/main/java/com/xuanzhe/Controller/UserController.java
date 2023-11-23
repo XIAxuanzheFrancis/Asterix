@@ -23,6 +23,7 @@ public class UserController {
     model.addAttribute("AllUsers",list);
     return "allusers";
   }
+
   @RequestMapping("/toadduser")
   public String addPage(){
     return "addusers";
@@ -36,26 +37,26 @@ public class UserController {
   @RequestMapping("/tomodify/{id}")
   public String toModifyPage(@PathVariable int id, Model model){
     Utilisateur utilisateur = utilisateurService.queryUserById(id);
-    model.addAttribute("niveau",utilisateur.getNiveau());
+    model.addAttribute("utilisateur",utilisateur);
     return "toModifyPage";
   }
-  @RequestMapping("/update")
-  public String updateNiveauUser(Utilisateur utilisateur){
-    utilisateurService.updateNiveauUser(utilisateur);
+  @RequestMapping("/updateuser")
+  public String updateUser(Utilisateur utilisateur){
+    utilisateurService.updateUser(utilisateur);
     return "redirect:/allusers";
   }
 
   @RequestMapping("/deleteUsers/{id}")
-  public String deleteUser(@PathVariable String email){
-    utilisateurService.deleteUser(email);
+  public String deleteUser(@PathVariable int id){
+    utilisateurService.deleteUser(id);
     return "redirect:/allusers";
   }
 
   @RequestMapping("/queryUsersByName")
   public String queryUsersByName(String queryUserName, Model model){
     List<Utilisateur> list = utilisateurService.queryUserByName(queryUserName);
-    model.addAttribute("Allusers",list);
+    model.addAttribute("AllUsers",list);
     return "allusers";
   }
-
 }
+

@@ -8,6 +8,11 @@
 <body>
 <div class="container">
     <div class="row clearfix">
+        <div>
+            Admin: <p>${param.AdminEmail}</p>
+            Description: <p>${param.AdminDiscription}</p>
+        </div>
+
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
@@ -58,7 +63,7 @@
                         <td>
                             <a href="${pageContext.request.contextPath}/tomodify/${user.id}">Modifier</a>
                             &nbsp; | &nbsp;
-                            <a href="${pageContext.request.contextPath}/deleteUsers/${user.email}">Supprimer</a>
+                            <a href="${pageContext.request.contextPath}/deleteUsers/${user.id}">Supprimer</a>
                         </td>
                     </tr>
                 </c:forEach>
