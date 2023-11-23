@@ -11,6 +11,9 @@
         <div>
             Admin: <p>${param.AdminEmail}</p>
             Description: <p>${param.AdminDiscription}</p>
+            <p>
+                <a href="${pageContext.request.contextPath}/logout">logout</a>
+            </p>
         </div>
 
         <div class="col-md-12 column">
