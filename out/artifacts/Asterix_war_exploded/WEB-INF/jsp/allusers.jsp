@@ -2,55 +2,83 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Liste des utilisateurs</title>
+    <title>User List</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+      }
+
+      .admin-info {
+        margin-bottom: 20px;
+      }
+
+      .btn-container {
+        margin-top: 20px;
+      }
+
+      .search-form {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .user-table {
+        margin-top: 20px;
+      }
+
+      .user-actions {
+        white-space: nowrap;
+      }
+    </style>
 </head>
 <body>
 <div class="container">
-    <div class="row clearfix">
-        <div>
-            Admin: <p>${param.AdminEmail}</p>
-            Description: <p>${param.AdminDiscription}</p>
+    <div class="row clearfix admin-info">
+        <div class="col-md-4">
+            <h4>Admin Information</h4>
+            <p><strong>Email:</strong> ${sessionScope.AdminEmail}</p>
+            <p><strong>Description:</strong> ${sessionScope.AdminDiscription}</p>
             <p>
-                <a href="${pageContext.request.contextPath}/logout">logout</a>
+                <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Logout</a>
             </p>
         </div>
 
-        <div class="col-md-12 column">
+        <div class="col-md-8">
             <div class="page-header">
                 <h1>
-                    <small>Liste des utilisateurs</small>
+                    <small>User List</small>
                 </h1>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 column">
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/toadduser">Ajouter un utilisateur</a>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/allusers">Afficher tous les utilisateurs</a>
+        <div class="row btn-container">
+            <div class="col-md-4">
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/toadduser">Add User</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/allusers">Show All Users</a>
             </div>
-            <div class="col-md-4 column">
-                <form action="${pageContext.request.contextPath}/queryUsersByName" method="post" style="display: flex; justify-content: center">
-                    <input type="text" name="queryUserName" class="form-control" placeholder="Entrez le nom de l'utilisateur à rechercher">
-                    <input type="submit" value="Rechercher" class="btn btn-primary">
+            <div class="col-md-4">
+                <form action="${pageContext.request.contextPath}/queryUsersByName" method="post" class="search-form">
+                    <input type="text" name="queryUserName" class="form-control" placeholder="Enter username to search">
+                    <input type="submit" value="Search" class="btn btn-primary">
                 </form>
             </div>
-
         </div>
     </div>
 
     <div class="row clearfix">
-        <div class="col-md-12 column">
-            <table class="table table-hover table-striped">
+        <div class="col-md-12">
+            <table class="table table-hover table-striped user-table">
                 <thead>
                 <tr>
                     <th>Email</th>
-                    <th>Mot de passe</th>
-                    <th>Nom</th>
-                    <th>Niveau</th>
+                    <th>Password</th>
+                    <th>Name</th>
+                    <th>Level</th>
                     <th>Description</th>
-                    <th>Abonnement Id List</th>
-                    <th>Abonné Id List</th>
+                    <th>Subscription Id List</th>
+                    <th>Subscriber Id List</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,10 +91,9 @@
                         <td>${user.description}</td>
                         <td>${user.abonnementIdList}</td>
                         <td>${user.abonneIdList}</td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/tomodify/${user.id}">Modifier</a>
-                            &nbsp; | &nbsp;
-                            <a href="${pageContext.request.contextPath}/deleteUsers/${user.id}">Supprimer</a>
+                        <td class="user-actions">
+                            <a href="${pageContext.request.contextPath}/tomodify/${user.id}" class="btn btn-warning">Modify</a>
+                            <a href="${pageContext.request.contextPath}/deleteUsers/${user.id}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

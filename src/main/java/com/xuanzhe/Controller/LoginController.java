@@ -29,8 +29,8 @@ public class LoginController {
     paramMap.put("motDePasse", motDePasse);
     if ((utilisateurService.loginUser(paramMap)!=null)&&(utilisateurService.getNiveauByEmail(email)==3)) {
       Utilisateur admin =  utilisateurService.queryUserByEmail(email);
-      redirectAttributes.addAttribute("AdminEmail",admin.getEmail());
-      redirectAttributes.addAttribute("AdminDiscription",admin.getDescription());
+      httpSession.setAttribute("AdminEmail",admin.getEmail());
+      httpSession.setAttribute("AdminDiscription",admin.getDescription());
       httpSession.setAttribute("motDePasse",motDePasse);
       return "redirect:/allusers";
     }
