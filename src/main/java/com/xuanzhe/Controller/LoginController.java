@@ -1,6 +1,8 @@
 package com.xuanzhe.Controller;
 
+import com.xuanzhe.pojo.Livre;
 import com.xuanzhe.pojo.Utilisateur;
+import com.xuanzhe.service.LivreService;
 import com.xuanzhe.service.UtilisateurService;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,9 @@ public class LoginController {
   @Autowired
   @Qualifier("UtilisateurServiceImpl")
   private UtilisateurService utilisateurService;
+  @Autowired
+  @Qualifier("LivreServiceImpl")
+  private LivreService livreService;
   @RequestMapping("/processLogin")
   public String processLogin(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse, Model model,
       RedirectAttributes redirectAttributes, HttpSession httpSession) {
@@ -33,6 +38,16 @@ public class LoginController {
       httpSession.setAttribute("AdminDiscription",admin.getDescription());
       httpSession.setAttribute("motDePasse",motDePasse);
       return "redirect:/allusers";
+    }
+    else if(utilisateurService.loginUser(paramMap)!=null){
+      Utilisateur utilisateur =  utilisateurService.queryUserByEmail(email);
+      httpSession.setAttribute("utilisateur",utilisateur);
+      //httpSession.setAttribute("utilisateurEmail",utilisateur.getEmail());
+      //httpSession.setAttribute("utilisateurDiscription",utilisateur.getDescription());
+      //httpSession.setAttribute("motDePasse",motDePasse);
+      List<Livre> livres = livreService.queryBookByUserId(utilisateur.getId());
+      httpSession.setAttribute("livres",livres);
+      return "redirect:/pagePersonnel";
     }
     else{
       return "forward:/index.jsp";

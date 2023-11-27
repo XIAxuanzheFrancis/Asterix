@@ -15,6 +15,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     if(request.getSession().getAttribute("motDePasse")!=null){
       return true;
     }
+    request.getRequestDispatcher("/WEB-INF/jsp/pagePersonnel.jsp").forward(request,response);
     request.getRequestDispatcher("/WEB-INF/jsp/allusers.jsp").forward(request,response);
     return false;
   }

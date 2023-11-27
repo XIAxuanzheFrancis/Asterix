@@ -7,7 +7,7 @@
   <title>Login Page</title>
   <style>
     body {
-      background-image: url('background-image.jpg'); /* 替换为实际的背景图片路径 */
+      background-image: url('background-image.jpg');
       background-size: cover;
       background-position: center;
       height: 100vh;

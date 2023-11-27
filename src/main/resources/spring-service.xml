@@ -10,6 +10,10 @@
     <property name="utilisateurMapper" ref="utilisateurMapper"></property>
   </bean>
 
+  <bean id="LivreServiceImpl" class="com.xuanzhe.service.LivreServiceImpl">
+    <property name="livreMapper" ref="livreMapper"></property>
+  </bean>
+
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource"></property>
   </bean>

@@ -58,5 +58,7 @@ public class UserController {
     model.addAttribute("AllUsers",list);
     return "allusers";
   }
+
+
 }
 

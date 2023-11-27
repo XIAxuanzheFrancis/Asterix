@@ -15,6 +15,6 @@ public class Utilisateur {
   private String motDePasse;
   private int niveau;
   private String description;
-  private String abonnementIdList; // Liste d'abonnements
-  private String abonneIdList; // Liste d'abonnés
+  private List<Integer> abonnementIdList; // Liste d'abonnements
+  private List<Integer> abonneIdList; // Liste d'abonnés
 }
