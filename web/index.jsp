@@ -7,7 +7,7 @@
   <title>Login Page</title>
   <style>
     body {
-      background-image: url('background-image.jpg');
+      background-image: url('/static/background-image.png');
       background-size: cover;
       background-position: center;
       height: 100vh;

@@ -21,4 +21,7 @@
       <bean class="com.xuanzhe.Config.LoginInterceptor"></bean>
     </mvc:interceptor>
   </mvc:interceptors>
+
+  <mvc:default-servlet-handler/>
+  <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
 </beans>
