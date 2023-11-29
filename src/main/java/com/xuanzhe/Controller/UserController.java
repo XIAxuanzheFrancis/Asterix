@@ -59,6 +59,11 @@ public class UserController {
     return "allusers";
   }
 
+  @RequestMapping("/pagePersonnel")
+  public String toPersonalPage(){
+    return "pagePersonnel";
+  }
+
 
 }
 

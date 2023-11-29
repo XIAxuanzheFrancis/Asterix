@@ -18,6 +18,7 @@
   <mvc:interceptors>
     <mvc:interceptor>
       <mvc:mapping path="/**"></mvc:mapping>
+      <mvc:exclude-mapping path="/**/static/*"/>
       <bean class="com.xuanzhe.Config.LoginInterceptor"></bean>
     </mvc:interceptor>
   </mvc:interceptors>

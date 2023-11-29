@@ -44,7 +44,7 @@ public class LoginController {
       httpSession.setAttribute("utilisateur",utilisateur);
       //httpSession.setAttribute("utilisateurEmail",utilisateur.getEmail());
       //httpSession.setAttribute("utilisateurDiscription",utilisateur.getDescription());
-      //httpSession.setAttribute("motDePasse",motDePasse);
+      httpSession.setAttribute("motDePasse",motDePasse);
       List<Livre> livres = livreService.queryBookByUserId(utilisateur.getId());
       httpSession.setAttribute("livres",livres);
       return "redirect:/pagePersonnel";
@@ -56,7 +56,7 @@ public class LoginController {
 
   @RequestMapping("/logout")
   public String logout(HttpSession session){
-    session.removeAttribute("motDePasse");
+    session.invalidate();
     return "../../index";
   }
 }
